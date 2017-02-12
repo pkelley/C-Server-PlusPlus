@@ -1,5 +1,5 @@
 # C-Server-PlusPlus
-A simple Server written in C++
+A simple messaging server written in C++
 
 Supports multiple clients messaging the server by using multiprocess programming.
 
