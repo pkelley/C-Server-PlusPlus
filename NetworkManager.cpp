@@ -136,7 +136,9 @@ int NetworkManager::acceptConns(){
                     dontQuit = false;
                 	close(new_fd);
                 }
-                cout << buf << endl;
+                //cout << numByte << endl;
+                if (dontQuit)
+                    cout << "Client "<< s << ": " << buf << endl;
             }
 
             exit(0);

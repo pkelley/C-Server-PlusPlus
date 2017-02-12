@@ -89,9 +89,10 @@ int main(int argc, char *argv[])
     printf("client: received '%s'\n",buf);
 
     bool dontQuit = true;
+
     while(dontQuit){
         cout << "Enter Message: ";
-        cin >> buf;
+        cin.getline(buf,MAXDATASIZE);
         send(sockfd, buf, MAXDATASIZE-1, 0);
 
     }
