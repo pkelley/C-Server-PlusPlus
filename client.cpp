@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -7,14 +8,18 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-
+#include <unistd.h>
 #include <arpa/inet.h>
+
+using namespace std;
 
 #define PORT "1776" // the port client will be connecting to
 
-#define MAXDATASIZE 100 // max number of bytes we can get at once
+#define MAXDATASIZE 1024 // max number of bytes we can get at once
 
 // get sockaddr, IPv4 or IPv6:
+
+
 void *get_in_addr(struct sockaddr *sa)
 {
     if (sa->sa_family == AF_INET) {
@@ -33,7 +38,7 @@ int main(int argc, char *argv[])
     char s[INET6_ADDRSTRLEN];
 
     if (argc != 2) {
-        fprintf(stderr,"usage: client hostname\n");
+        fprintf(stderr,"usage: ./client hostname\n");
         exit(1);
     }
 
@@ -82,6 +87,19 @@ int main(int argc, char *argv[])
     buf[numbytes] = '\0';
 
     printf("client: received '%s'\n",buf);
+
+    bool dontQuit = true;
+    while(dontQuit){
+        cout << "Enter Message: ";
+        cin >> buf;
+        send(sockfd, buf, MAXDATASIZE-1, 0);
+
+    }
+
+
+
+
+
 
     close(sockfd);
 
